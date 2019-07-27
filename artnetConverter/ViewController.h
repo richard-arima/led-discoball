@@ -10,6 +10,12 @@
 
 @interface ViewController : NSViewController
 
+@property (nonatomic, strong) NSNotificationCenter *nc;
+
+@property (weak) IBOutlet NSTextField *discoMIDIChannelTextField;
+@property (weak) IBOutlet NSTextField *discoBrightnessTextField;
+@property (weak) IBOutlet NSTextField *discoModeTextField;
+@property (weak) IBOutlet NSTextField *discoSpeedTextField;
 
 @end
 

@@ -7,9 +7,22 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <ORSSerial/ORSSerial.h>
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
+//#import "BLEPeripheral.h"
 
+#define DISCO_MIDI_CHANNEL  1
+
+@interface AppDelegate : NSObject <NSApplicationDelegate> {
+    int sock;
+    int discoSpeed, discoBrightness, discoMode;
+    int discoMIDIChannel;
+}
+
+@property (strong, nonatomic) NSThread *netLoopThread;
+//@property (strong, nonatomic) BLEPeripheral *peripheral;
+
+@property (strong, nonatomic) NSNotificationCenter *nc;
 
 @end
 

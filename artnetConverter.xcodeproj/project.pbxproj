@@ -12,6 +12,7 @@
 		D9A12B9422E7AD9E00DB51FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9A12B9322E7AD9E00DB51FF /* Assets.xcassets */; };
 		D9A12B9722E7AD9E00DB51FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9A12B9522E7AD9E00DB51FF /* Main.storyboard */; };
 		D9A12B9A22E7AD9E00DB51FF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A12B9922E7AD9E00DB51FF /* main.m */; };
+		D9A12BA222E7B47F00DB51FF /* BLEPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A12BA122E7B47F00DB51FF /* BLEPeripheral.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,8 @@
 		D9A12B9822E7AD9E00DB51FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9A12B9922E7AD9E00DB51FF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D9A12B9B22E7AD9E00DB51FF /* artnetConverter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = artnetConverter.entitlements; sourceTree = "<group>"; };
+		D9A12BA122E7B47F00DB51FF /* BLEPeripheral.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLEPeripheral.m; sourceTree = "<group>"; };
+		D9A12BA322E7B49B00DB51FF /* BLEPeripheral.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLEPeripheral.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +46,7 @@
 			children = (
 				D9A12B8C22E7AD9D00DB51FF /* artnetConverter */,
 				D9A12B8B22E7AD9D00DB51FF /* Products */,
+				D9F2921D22ECF0F400C2DD48 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -61,6 +65,8 @@
 				D9A12B8E22E7AD9D00DB51FF /* AppDelegate.m */,
 				D9A12B9022E7AD9D00DB51FF /* ViewController.h */,
 				D9A12B9122E7AD9D00DB51FF /* ViewController.m */,
+				D9A12BA322E7B49B00DB51FF /* BLEPeripheral.h */,
+				D9A12BA122E7B47F00DB51FF /* BLEPeripheral.m */,
 				D9A12B9322E7AD9E00DB51FF /* Assets.xcassets */,
 				D9A12B9522E7AD9E00DB51FF /* Main.storyboard */,
 				D9A12B9822E7AD9E00DB51FF /* Info.plist */,
@@ -68,6 +74,13 @@
 				D9A12B9B22E7AD9E00DB51FF /* artnetConverter.entitlements */,
 			);
 			path = artnetConverter;
+			sourceTree = "<group>";
+		};
+		D9F2921D22ECF0F400C2DD48 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -101,6 +114,11 @@
 				TargetAttributes = {
 					D9A12B8922E7AD9D00DB51FF = {
 						CreatedOnToolsVersion = 10.3;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -140,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9A12B9222E7AD9D00DB51FF /* ViewController.m in Sources */,
+				D9A12BA222E7B47F00DB51FF /* BLEPeripheral.m in Sources */,
 				D9A12B9A22E7AD9E00DB51FF /* main.m in Sources */,
 				D9A12B8F22E7AD9D00DB51FF /* AppDelegate.m in Sources */,
 			);
