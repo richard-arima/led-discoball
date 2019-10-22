@@ -13,7 +13,27 @@
 		D9A12B9722E7AD9E00DB51FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9A12B9522E7AD9E00DB51FF /* Main.storyboard */; };
 		D9A12B9A22E7AD9E00DB51FF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A12B9922E7AD9E00DB51FF /* main.m */; };
 		D9A12BA222E7B47F00DB51FF /* BLEPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A12BA122E7B47F00DB51FF /* BLEPeripheral.m */; };
+		D9F2924222ECF40900C2DD48 /* ORSSerial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9F2923F22ECF40300C2DD48 /* ORSSerial.framework */; };
+		D9F2924522ECF4E000C2DD48 /* SerialConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = D9F2924422ECF4E000C2DD48 /* SerialConnector.m */; };
+		D9F2924822ECF6E700C2DD48 /* LEDPackets.m in Sources */ = {isa = PBXBuildFile; fileRef = D9F2924722ECF6E700C2DD48 /* LEDPackets.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D9F2923E22ECF40300C2DD48 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D9F2923922ECF40300C2DD48 /* ORSSerialPort.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9DCA89121A2BB106009285EB;
+			remoteInfo = ORSSerial;
+		};
+		D9F2924022ECF40300C2DD48 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D9F2923922ECF40300C2DD48 /* ORSSerialPort.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9D7472131B6D7767002D8B10;
+			remoteInfo = "ORSSerialPort Tests";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		D9A12B8A22E7AD9D00DB51FF /* artnetConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = artnetConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -28,6 +48,11 @@
 		D9A12B9B22E7AD9E00DB51FF /* artnetConverter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = artnetConverter.entitlements; sourceTree = "<group>"; };
 		D9A12BA122E7B47F00DB51FF /* BLEPeripheral.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLEPeripheral.m; sourceTree = "<group>"; };
 		D9A12BA322E7B49B00DB51FF /* BLEPeripheral.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLEPeripheral.h; sourceTree = "<group>"; };
+		D9F2923922ECF40300C2DD48 /* ORSSerialPort.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ORSSerialPort.xcodeproj; path = "../../artnetConverter/Frameworks/ORSSerialPort/Framework Project/ORSSerialPort.xcodeproj"; sourceTree = "<group>"; };
+		D9F2924322ECF4BD00C2DD48 /* SerialConnector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SerialConnector.h; sourceTree = "<group>"; };
+		D9F2924422ECF4E000C2DD48 /* SerialConnector.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SerialConnector.m; sourceTree = "<group>"; };
+		D9F2924622ECF5C600C2DD48 /* LEDPackets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LEDPackets.h; path = ../../../../Documents/Arduino/LEDController/LEDController/LEDPackets.h; sourceTree = "<group>"; };
+		D9F2924722ECF6E700C2DD48 /* LEDPackets.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LEDPackets.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9F2924222ECF40900C2DD48 /* ORSSerial.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,12 +87,16 @@
 		D9A12B8C22E7AD9D00DB51FF /* artnetConverter */ = {
 			isa = PBXGroup;
 			children = (
+				D9F2924622ECF5C600C2DD48 /* LEDPackets.h */,
+				D9F2924722ECF6E700C2DD48 /* LEDPackets.m */,
 				D9A12B8D22E7AD9D00DB51FF /* AppDelegate.h */,
 				D9A12B8E22E7AD9D00DB51FF /* AppDelegate.m */,
 				D9A12B9022E7AD9D00DB51FF /* ViewController.h */,
 				D9A12B9122E7AD9D00DB51FF /* ViewController.m */,
 				D9A12BA322E7B49B00DB51FF /* BLEPeripheral.h */,
 				D9A12BA122E7B47F00DB51FF /* BLEPeripheral.m */,
+				D9F2924322ECF4BD00C2DD48 /* SerialConnector.h */,
+				D9F2924422ECF4E000C2DD48 /* SerialConnector.m */,
 				D9A12B9322E7AD9E00DB51FF /* Assets.xcassets */,
 				D9A12B9522E7AD9E00DB51FF /* Main.storyboard */,
 				D9A12B9822E7AD9E00DB51FF /* Info.plist */,
@@ -79,8 +109,18 @@
 		D9F2921D22ECF0F400C2DD48 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D9F2923922ECF40300C2DD48 /* ORSSerialPort.xcodeproj */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D9F2923A22ECF40300C2DD48 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D9F2923F22ECF40300C2DD48 /* ORSSerial.framework */,
+				D9F2924122ECF40300C2DD48 /* ORSSerialPort Tests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -116,7 +156,7 @@
 						CreatedOnToolsVersion = 10.3;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -133,12 +173,35 @@
 			mainGroup = D9A12B8122E7AD9D00DB51FF;
 			productRefGroup = D9A12B8B22E7AD9D00DB51FF /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D9F2923A22ECF40300C2DD48 /* Products */;
+					ProjectRef = D9F2923922ECF40300C2DD48 /* ORSSerialPort.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				D9A12B8922E7AD9D00DB51FF /* artnetConverter */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		D9F2923F22ECF40300C2DD48 /* ORSSerial.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ORSSerial.framework;
+			remoteRef = D9F2923E22ECF40300C2DD48 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D9F2924122ECF40300C2DD48 /* ORSSerialPort Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "ORSSerialPort Tests.xctest";
+			remoteRef = D9F2924022ECF40300C2DD48 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		D9A12B8822E7AD9D00DB51FF /* Resources */ = {
@@ -158,7 +221,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9A12B9222E7AD9D00DB51FF /* ViewController.m in Sources */,
+				D9F2924522ECF4E000C2DD48 /* SerialConnector.m in Sources */,
 				D9A12BA222E7B47F00DB51FF /* BLEPeripheral.m in Sources */,
+				D9F2924822ECF6E700C2DD48 /* LEDPackets.m in Sources */,
 				D9A12B9A22E7AD9E00DB51FF /* main.m in Sources */,
 				D9A12B8F22E7AD9D00DB51FF /* AppDelegate.m in Sources */,
 			);
@@ -293,7 +358,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = artnetConverter/artnetConverter.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 6K4N8SY4X2;
@@ -311,7 +375,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = artnetConverter/artnetConverter.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 6K4N8SY4X2;

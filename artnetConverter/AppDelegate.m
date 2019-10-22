@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "LEDPackets.h"
 
 #include <netinet/in.h>
 #include <sys/socket.h>
@@ -29,11 +30,15 @@
     _nc = [NSNotificationCenter defaultCenter];
     [_nc addObserver:self selector:@selector(discoMIDIChannelChanged:) name:@"discoMIDIChannelChanged" object:nil];
     
-    discoMode = -1;
-    discoSpeed = -1;
-    discoBrightness = -1;
-    discoMIDIChannel = DISCO_MIDI_CHANNEL;
-    [_nc postNotificationName:@"discoMIDIChannelChanged" object:[NSNumber numberWithInt:discoMIDIChannel]];
+    discoMIDIChannel = 1;
+    [self setDiscoMIDIChannel:DISCO_MIDI_CHANNEL];
+    
+    _serial = [[SerialConnector alloc] init];
+    if(_serial == nil) {
+        NSLog(@"SerialConnector could not be created");
+        return;
+    }
+    NSLog(@"SerialConnector created");
     
 //    _peripheral = [[BLEPeripheral alloc] init];
 //    if(_peripheral == nil) {
@@ -60,10 +65,23 @@
         }
     }
     
+    if(_serial) [_serial shutDown];
 //    if(_peripheral) {
 //        [_peripheral shutDown];
 //        _peripheral = nil;
 //    }
+}
+
+- (BOOL)setDiscoMIDIChannel:(int)channel {
+    if((channel < 1) || ((channel + GUART_MSG_DMX_UPDATE_SIZE) > 512)) {
+        [_nc postNotificationName:@"discoMIDIChannelChanged" object:self userInfo:@{ @"channel" : [NSNumber numberWithInt:discoMIDIChannel] }];
+        return NO;
+    }
+    
+    discoMIDIChannel = channel;
+    [_nc postNotificationName:@"discoMIDIChannelChanged" object:self userInfo:@{ @"channel" : [NSNumber numberWithInt:discoMIDIChannel] }];
+    
+    return YES;
 }
 
 - (void)netLoop {
@@ -134,17 +152,26 @@
 //        printf("\n");
         
         if(nread == 530) {
-            if(read_buffer[17 + DISCO_MIDI_CHANNEL] != discoBrightness) {
-                discoBrightness = read_buffer[17 + discoMIDIChannel];
-                [_nc postNotificationName:@"discoBrightnessChanged" object:[NSNumber numberWithInt:discoBrightness]];
-            }
-            if(read_buffer[18 + DISCO_MIDI_CHANNEL] != discoMode) {
-                discoMode = read_buffer[18 + discoMIDIChannel];
-                [_nc postNotificationName:@"discoModeChanged" object:[NSNumber numberWithInt:discoMode]];
-            }
-            if(read_buffer[19 + DISCO_MIDI_CHANNEL] != discoSpeed) {
-                discoSpeed = read_buffer[19 + discoMIDIChannel];
-                [_nc postNotificationName:@"discoSpeedChanged" object:[NSNumber numberWithInt:discoSpeed]];
+//            if(read_buffer[17 + discoMIDIChannel] != discoBrightness) {
+//                discoBrightness = read_buffer[17 + discoMIDIChannel];
+//                [_nc postNotificationName:@"discoBrightnessChanged" object:[NSNumber numberWithInt:discoBrightness]];
+//            }
+//            if(read_buffer[18 + discoMIDIChannel] != discoMode) {
+//                discoMode = read_buffer[18 + discoMIDIChannel];
+//                [_nc postNotificationName:@"discoModeChanged" object:[NSNumber numberWithInt:discoMode]];
+//            }
+//            if(read_buffer[19 + discoMIDIChannel] != discoSpeed) {
+//                discoSpeed = read_buffer[19 + discoMIDIChannel];
+//                [_nc postNotificationName:@"discoSpeedChanged" object:[NSNumber numberWithInt:discoSpeed]];
+//            }
+            currentDMX = *((GUARTmsgDMXUpdate *)&read_buffer[17 + discoMIDIChannel]);
+            //NSLog(@"%d %d", currentDMX.masterDimmer, currentDMX.dimmerMode);
+            
+            [_nc postNotificationName:@"discoDMXChanged" object:self userInfo:@{ @"dmxData" : [NSData dataWithBytes:&currentDMX length:sizeof(GUARTmsgDMXUpdate)] }];
+            
+            if(![_serial sendPacketType:GUART_MSG_DMX_UPDATE WithBuffer:(uint8_t *)&read_buffer[17 + discoMIDIChannel]])
+            {
+                NSLog(@"Error writing to serial port");
             }
         }
     }
@@ -153,6 +180,9 @@
 }
 
 - (void)discoMIDIChannelChanged:(NSNotification *)n {
+    if([n object] == self) return;
+    int channel = [[n userInfo][@"channel"] intValue];
+    [self setDiscoMIDIChannel:channel];
 }
 
 @end

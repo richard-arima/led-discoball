@@ -7,7 +7,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import <ORSSerial/ORSSerial.h>
+#import "SerialConnector.h"
+#import "LEDPackets.h"
 
 //#import "BLEPeripheral.h"
 
@@ -15,11 +16,12 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate> {
     int sock;
-    int discoSpeed, discoBrightness, discoMode;
     int discoMIDIChannel;
+    GUARTmsgDMXUpdate currentDMX;
 }
 
 @property (strong, nonatomic) NSThread *netLoopThread;
+@property (strong, nonatomic) SerialConnector *serial;
 //@property (strong, nonatomic) BLEPeripheral *peripheral;
 
 @property (strong, nonatomic) NSNotificationCenter *nc;
