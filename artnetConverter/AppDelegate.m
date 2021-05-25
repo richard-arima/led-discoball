@@ -165,7 +165,7 @@
 //                [_nc postNotificationName:@"discoSpeedChanged" object:[NSNumber numberWithInt:discoSpeed]];
 //            }
             currentDMX = *((GUARTmsgDMXUpdate *)&read_buffer[17 + discoMIDIChannel]);
-            //NSLog(@"%d %d", currentDMX.masterDimmer, currentDMX.dimmerMode);
+//            NSLog(@"%d %d", currentDMX.masterDimmer, currentDMX.dimmerMode);
             
             [_nc postNotificationName:@"discoDMXChanged" object:self userInfo:@{ @"dmxData" : [NSData dataWithBytes:&currentDMX length:sizeof(GUARTmsgDMXUpdate)] }];
             
